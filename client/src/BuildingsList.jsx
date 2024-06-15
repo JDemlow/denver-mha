@@ -1,7 +1,6 @@
 import React, { useState, useEffect } from "react";
 import axios from "axios";
 import { FaMapMarker } from "react-icons/fa";
-import { Link } from "react-router-dom";
 
 const BuildingsList = () => {
   const [buildings, setBuildings] = useState([]);
@@ -67,7 +66,7 @@ const BuildingsList = () => {
                 </div>
               </div>
               <div className="flex justify-center">
-                <button className="px-6 py-3 mt-4 text-lg text-white bg-blue-500 rounded-lg hover:bg-blue-600">
+                <button className="px-6 py-3 mt-4 text-lg text-white rounded-lg bg-emerald-500 hover:bg-emerald-600">
                   Show Building
                 </button>
               </div>
