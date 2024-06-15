@@ -37,6 +37,15 @@ app.get("/api/buildings", async (req, res) => {
   }
 });
 
+app.get("/api/buildings/:id", async (req, res) => {
+  try {
+    const building = await Building.findById(req.params.id);
+    res.json(building);
+  } catch (err) {
+    res.status(500).send(err);
+  }
+});
+
 app.listen(port, () => {
   console.log(`Server is running on port: ${port}`);
 });
