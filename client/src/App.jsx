@@ -3,7 +3,7 @@ import BuildingsList from "./BuildingsList";
 
 const App = () => {
   return (
-    <div className="App">
+    <div>
       <BuildingsList />
     </div>
   );
