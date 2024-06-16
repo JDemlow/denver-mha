@@ -47,7 +47,7 @@ const Navbar = () => {
             <span className="sr-only">Search</span>
           </button>
           <div className={`relative ${isSearchOpen ? "" : "hidden"} md:block`}>
-            <div className="absolute inset-y-0 left-0 flex items-center pl-3 pointer-events-none">
+            <div className="absolute inset-y-0 left-0 items-center hidden pt-3 pl-4 pointer-events-none md:block">
               <svg
                 className="w-4 h-4 text-gray-500"
                 aria-hidden="true"
@@ -101,7 +101,7 @@ const Navbar = () => {
           }`}
           id="navbar-search"
         >
-          <ul className="flex flex-col p-4 mt-4 ml-40 font-medium border border-gray-100 rounded-lg md:flex-row md:space-x-8 md:mt-0 md:border-0">
+          <ul className="flex flex-col p-4 mt-4 ml-48 font-medium border border-gray-100 rounded-lg md:flex-row md:space-x-8 md:mt-0 md:border-0">
             <li>
               <NavLink
                 to="/"
