@@ -14,7 +14,7 @@ const Navbar = () => {
   };
 
   return (
-    <nav className="p-4 border-b border-gray-100 border-a bg-emerald-500">
+    <nav className="p-4 border-b border-gray-100 bg-emerald-500">
       <div className="container flex flex-wrap items-center justify-between mx-auto">
         <NavLink to="/">
           <img
@@ -107,8 +107,8 @@ const Navbar = () => {
                 to="/"
                 className={({ isActive }) =>
                   isActive
-                    ? "block px-3 py-2 text-white bg-emerald-700 rounded md:bg-transparent md:text-white md:p-0"
-                    : "block px-3 py-2 text-gray-900 rounded hover:bg-gray-100 md:hover:bg-transparent md:hover:text-emerald-700 md:p-0"
+                    ? "block px-3 py-2 text-white bg-emerald-700 rounded md:bg-emerald-700 md:text-white md:rounded-md"
+                    : "block px-3 py-2 text-gray-900 rounded hover:bg-emerald-100 md:hover:bg-emerald-700 md:hover:text-white md:rounded-md"
                 }
                 aria-current="page"
               >
@@ -120,8 +120,8 @@ const Navbar = () => {
                 to="/all-buildings"
                 className={({ isActive }) =>
                   isActive
-                    ? "block px-3 py-2 text-white bg-emerald-700 rounded md:bg-transparent md:text-white md:p-0"
-                    : "block px-3 py-2 text-gray-900 rounded hover:bg-gray-100 md:hover:bg-transparent md:hover:text-emerald-700 md:p-0"
+                    ? "block px-3 py-2 text-white bg-emerald-700 rounded md:bg-emerald-700 md:text-white md:rounded-md"
+                    : "block px-3 py-2 text-gray-900 rounded hover:bg-emerald-100 md:hover:bg-emerald-700 md:hover:text-white md:rounded-md"
                 }
               >
                 All Buildings
@@ -132,8 +132,8 @@ const Navbar = () => {
                 to="/contact"
                 className={({ isActive }) =>
                   isActive
-                    ? "block px-3 py-2 text-white bg-emerald-700 rounded md:bg-transparent md:text-white md:p-0"
-                    : "block px-3 py-2 text-gray-900 rounded hover:bg-gray-100 md:hover:bg-transparent md:hover:text-emerald-700 md:p-0"
+                    ? "block px-3 py-2 text-white bg-emerald-700 rounded md:bg-emerald-700 md:text-white md:rounded-md"
+                    : "block px-3 py-2 text-gray-900 rounded hover:bg-emerald-100 md:hover:bg-emerald-700 md:hover:text-white md:rounded-md"
                 }
               >
                 Contact
@@ -144,8 +144,8 @@ const Navbar = () => {
                 to="/dummy"
                 className={({ isActive }) =>
                   isActive
-                    ? "block px-3 py-2 text-white bg-emerald-700 rounded md:bg-transparent md:text-white md:p-0"
-                    : "block px-3 py-2 text-gray-900 rounded hover:bg-gray-100 md:hover:bg-transparent md:hover:text-emerald-700 md:p-0"
+                    ? "block px-3 py-2 text-white bg-emerald-700 rounded md:bg-emerald-700 md:text-white md:rounded-md"
+                    : "block px-3 py-2 text-gray-900 rounded hover:bg-emerald-100 md:hover:bg-emerald-700 md:hover:text-white md:rounded-md"
                 }
               >
                 Dummy
