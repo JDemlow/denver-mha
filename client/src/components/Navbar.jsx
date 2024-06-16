@@ -1,27 +1,32 @@
 import React, { useState } from "react";
-import { Link } from "react-router-dom";
+import { NavLink } from "react-router-dom";
 
 const Navbar = () => {
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
+  const [isSearchOpen, setIsSearchOpen] = useState(false);
 
   const toggleMobileMenu = () => {
     setIsMobileMenuOpen(!isMobileMenuOpen);
   };
 
+  const toggleSearch = () => {
+    setIsSearchOpen(!isSearchOpen);
+  };
+
   return (
     <nav className="p-4 bg-emerald-500">
       <div className="container flex flex-wrap items-center justify-between mx-auto">
-        <Link to="/">
+        <NavLink to="/">
           <img
             className="w-auto h-8 sm:h-10"
             src="../src/assets/logo.png"
             alt="Your Company"
           />
-        </Link>
+        </NavLink>
         <div className="flex md:order-2">
           <button
             type="button"
-            onClick={toggleMobileMenu}
+            onClick={toggleSearch}
             className="md:hidden text-gray-500 hover:bg-gray-100 focus:outline-none focus:ring-4 focus:ring-gray-200 rounded-lg text-sm p-2.5 mr-1"
           >
             <svg
@@ -41,7 +46,7 @@ const Navbar = () => {
             </svg>
             <span className="sr-only">Search</span>
           </button>
-          <div className="relative hidden md:block">
+          <div className={`relative ${isSearchOpen ? "" : "hidden"} md:block`}>
             <div className="absolute inset-y-0 left-0 flex items-center pl-3 pointer-events-none">
               <svg
                 className="w-4 h-4 text-gray-500"
@@ -63,7 +68,7 @@ const Navbar = () => {
             <input
               type="text"
               id="search-navbar"
-              className="block w-full p-2 pl-10 text-sm text-gray-900 border border-gray-300 rounded-lg bg-gray-50 focus:ring-emerald-500 focus:border-emerald-500"
+              className="block w-[200px] p-2 pl-10 mr-2 ml-2 text-sm text-gray-900 border border-gray-300 rounded-lg bg-gray-50 focus:ring-emerald-500 focus:border-emerald-500"
               placeholder="Search..."
             />
           </div>
@@ -96,56 +101,43 @@ const Navbar = () => {
           }`}
           id="navbar-search"
         >
-          <div className="relative mt-3 md:hidden">
-            <div className="absolute inset-y-0 left-0 flex items-center pl-3 pointer-events-none">
-              <svg
-                className="w-4 h-4 text-gray-500"
-                aria-hidden="true"
-                xmlns="http://www.w3.org/2000/svg"
-                fill="none"
-                viewBox="0 0 20 20"
-              >
-                <path
-                  stroke="currentColor"
-                  strokeLinecap="round"
-                  strokeLinejoin="round"
-                  strokeWidth="2"
-                  d="m19 19-4-4m0-7A7 7 0 1 1 1 8a7 7 0 0 1 14 0Z"
-                />
-              </svg>
-            </div>
-            <input
-              type="text"
-              id="search-navbar"
-              className="block w-full p-2 pl-10 text-sm text-gray-900 border border-gray-300 rounded-lg bg-gray-50 focus:ring-emerald-500 focus:border-emerald-500"
-              placeholder="Search..."
-            />
-          </div>
           <ul className="flex flex-col p-4 mt-4 ml-40 font-medium border border-gray-100 rounded-lg md:flex-row md:space-x-8 md:mt-0 md:border-0">
             <li>
-              <Link
+              <NavLink
                 to="/"
-                className="block px-3 py-2 text-white rounded bg-emerald-700 md:bg-transparent md:text-white md:p-0"
+                className={({ isActive }) =>
+                  isActive
+                    ? "block px-3 py-2 text-white bg-emerald-700 rounded md:bg-transparent md:text-white md:p-0"
+                    : "block px-3 py-2 text-gray-900 rounded hover:bg-gray-100 md:hover:bg-transparent md:hover:text-emerald-700 md:p-0"
+                }
                 aria-current="page"
               >
                 Home
-              </Link>
+              </NavLink>
             </li>
             <li>
-              <Link
+              <NavLink
                 to="/about"
-                className="block px-3 py-2 text-gray-900 rounded hover:bg-gray-100 md:hover:bg-transparent md:hover:text-emerald-700 md:p-0"
+                className={({ isActive }) =>
+                  isActive
+                    ? "block px-3 py-2 text-white bg-emerald-700 rounded md:bg-transparent md:text-white md:p-0"
+                    : "block px-3 py-2 text-gray-900 rounded hover:bg-gray-100 md:hover:bg-transparent md:hover:text-emerald-700 md:p-0"
+                }
               >
                 About
-              </Link>
+              </NavLink>
             </li>
             <li>
-              <Link
+              <NavLink
                 to="/contact"
-                className="block px-3 py-2 text-gray-900 rounded hover:bg-gray-100 md:hover:bg-transparent md:hover:text-emerald-700 md:p-0"
+                className={({ isActive }) =>
+                  isActive
+                    ? "block px-3 py-2 text-white bg-emerald-700 rounded md:bg-transparent md:text-white md:p-0"
+                    : "block px-3 py-2 text-gray-900 rounded hover:bg-gray-100 md:hover:bg-transparent md:hover:text-emerald-700 md:p-0"
+                }
               >
                 Contact
-              </Link>
+              </NavLink>
             </li>
           </ul>
         </div>
