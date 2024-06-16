@@ -14,7 +14,7 @@ const Navbar = () => {
   };
 
   return (
-    <nav className="p-4 bg-emerald-500">
+    <nav className="p-4 border-b border-gray-100 border-a bg-emerald-500">
       <div className="container flex flex-wrap items-center justify-between mx-auto">
         <NavLink to="/">
           <img
