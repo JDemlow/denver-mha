@@ -14,7 +14,7 @@ const HomeCards = () => {
               Browse our list and edit your building
             </p>
             <Link to="/all-buildings">
-              <button className="px-4 py-2 text-white bg-black rounded">
+              <button className="px-4 py-2 text-white bg-black rounded hover:bg-slate-700">
                 View All Buildings
               </button>
             </Link>
@@ -24,7 +24,7 @@ const HomeCards = () => {
               For Administrators
             </h2>
             <p className="mb-4 text-gray-700">Log in to view your profile</p>
-            <button className="px-4 py-2 text-white rounded bg-emerald-500">
+            <button className="px-4 py-2 text-white rounded bg-emerald-500 hover:bg-emerald-700">
               Log In
             </button>
           </div>
