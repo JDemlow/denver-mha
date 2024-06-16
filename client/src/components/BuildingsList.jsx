@@ -93,6 +93,13 @@ const BuildingsList = ({ isHome }) => {
           </div>
         ))}
       </div>
+      <div className="flex justify-center pt-10 align-center">
+        <Link to="/">
+          <button className="px-6 py-3 mt-4 text-lg text-white rounded-lg sm:px-40 bg-emerald-500 hover:bg-emerald-600">
+            Add A New Building
+          </button>
+        </Link>
+      </div>
     </div>
   );
 };
