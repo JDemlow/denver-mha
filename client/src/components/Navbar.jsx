@@ -18,7 +18,7 @@ const Navbar = () => {
       <div className="container flex flex-wrap items-center justify-between mx-auto">
         <NavLink to="/">
           <img
-            className="w-auto h-8 sm:h-10"
+            className="h-8 md:w-16 md:h-16 sm:w-auto sm:h-10"
             src="../src/assets/logo.png"
             alt="Your Company"
           />
