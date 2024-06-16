@@ -1,23 +1,153 @@
-import React from "react";
+import React, { useState } from "react";
 import { Link } from "react-router-dom";
 
 const Navbar = () => {
+  const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
+
+  const toggleMobileMenu = () => {
+    setIsMobileMenuOpen(!isMobileMenuOpen);
+  };
+
   return (
     <nav className="p-4 bg-emerald-500">
-      <div className="container flex items-center justify-between mx-auto">
+      <div className="container flex flex-wrap items-center justify-between mx-auto">
         <Link to="/">
-          <img className="w-16" src="src/assets/image.png" alt="" />
+          <img
+            className="w-auto h-8 sm:h-10"
+            src="../src/assets/logo.png"
+            alt="Your Company"
+          />
         </Link>
-        <div className="space-x-10">
-          <Link to="/" className="text-white">
-            Home
-          </Link>
-          <Link to="/about" className="text-white">
-            About
-          </Link>
-          <Link to="/contact" className="text-white">
-            Contact
-          </Link>
+        <div className="flex md:order-2">
+          <button
+            type="button"
+            onClick={toggleMobileMenu}
+            className="md:hidden text-gray-500 hover:bg-gray-100 focus:outline-none focus:ring-4 focus:ring-gray-200 rounded-lg text-sm p-2.5 mr-1"
+          >
+            <svg
+              className="w-5 h-5"
+              aria-hidden="true"
+              xmlns="http://www.w3.org/2000/svg"
+              fill="none"
+              viewBox="0 0 20 20"
+            >
+              <path
+                stroke="currentColor"
+                strokeLinecap="round"
+                strokeLinejoin="round"
+                strokeWidth="2"
+                d="m19 19-4-4m0-7A7 7 0 1 1 1 8a7 7 0 0 1 14 0Z"
+              />
+            </svg>
+            <span className="sr-only">Search</span>
+          </button>
+          <div className="relative hidden md:block">
+            <div className="absolute inset-y-0 left-0 flex items-center pl-3 pointer-events-none">
+              <svg
+                className="w-4 h-4 text-gray-500"
+                aria-hidden="true"
+                xmlns="http://www.w3.org/2000/svg"
+                fill="none"
+                viewBox="0 0 20 20"
+              >
+                <path
+                  stroke="currentColor"
+                  strokeLinecap="round"
+                  strokeLinejoin="round"
+                  strokeWidth="2"
+                  d="m19 19-4-4m0-7A7 7 0 1 1 1 8a7 7 0 0 1 14 0Z"
+                />
+              </svg>
+              <span className="sr-only">Search icon</span>
+            </div>
+            <input
+              type="text"
+              id="search-navbar"
+              className="block w-full p-2 pl-10 text-sm text-gray-900 border border-gray-300 rounded-lg bg-gray-50 focus:ring-emerald-500 focus:border-emerald-500"
+              placeholder="Search..."
+            />
+          </div>
+          <button
+            type="button"
+            onClick={toggleMobileMenu}
+            className="inline-flex items-center justify-center w-10 h-10 p-2 text-sm text-gray-500 rounded-lg md:hidden hover:bg-gray-100 focus:outline-none focus:ring-2 focus:ring-gray-200"
+          >
+            <span className="sr-only">Open main menu</span>
+            <svg
+              className="w-5 h-5"
+              aria-hidden="true"
+              xmlns="http://www.w3.org/2000/svg"
+              fill="none"
+              viewBox="0 0 17 14"
+            >
+              <path
+                stroke="currentColor"
+                strokeLinecap="round"
+                strokeLinejoin="round"
+                strokeWidth="2"
+                d="M1 1h15M1 7h15M1 13h15"
+              />
+            </svg>
+          </button>
+        </div>
+        <div
+          className={`items-center justify-end w-full md:flex md:w-auto md:order-1 ${
+            isMobileMenuOpen ? "" : "hidden"
+          }`}
+          id="navbar-search"
+        >
+          <div className="relative mt-3 md:hidden">
+            <div className="absolute inset-y-0 left-0 flex items-center pl-3 pointer-events-none">
+              <svg
+                className="w-4 h-4 text-gray-500"
+                aria-hidden="true"
+                xmlns="http://www.w3.org/2000/svg"
+                fill="none"
+                viewBox="0 0 20 20"
+              >
+                <path
+                  stroke="currentColor"
+                  strokeLinecap="round"
+                  strokeLinejoin="round"
+                  strokeWidth="2"
+                  d="m19 19-4-4m0-7A7 7 0 1 1 1 8a7 7 0 0 1 14 0Z"
+                />
+              </svg>
+            </div>
+            <input
+              type="text"
+              id="search-navbar"
+              className="block w-full p-2 pl-10 text-sm text-gray-900 border border-gray-300 rounded-lg bg-gray-50 focus:ring-emerald-500 focus:border-emerald-500"
+              placeholder="Search..."
+            />
+          </div>
+          <ul className="flex flex-col p-4 mt-4 ml-40 font-medium border border-gray-100 rounded-lg md:flex-row md:space-x-8 md:mt-0 md:border-0">
+            <li>
+              <Link
+                to="/"
+                className="block px-3 py-2 text-white rounded bg-emerald-700 md:bg-transparent md:text-white md:p-0"
+                aria-current="page"
+              >
+                Home
+              </Link>
+            </li>
+            <li>
+              <Link
+                to="/about"
+                className="block px-3 py-2 text-gray-900 rounded hover:bg-gray-100 md:hover:bg-transparent md:hover:text-emerald-700 md:p-0"
+              >
+                About
+              </Link>
+            </li>
+            <li>
+              <Link
+                to="/contact"
+                className="block px-3 py-2 text-gray-900 rounded hover:bg-gray-100 md:hover:bg-transparent md:hover:text-emerald-700 md:p-0"
+              >
+                Contact
+              </Link>
+            </li>
+          </ul>
         </div>
       </div>
     </nav>
