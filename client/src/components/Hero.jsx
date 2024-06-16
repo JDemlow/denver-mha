@@ -1,5 +1,5 @@
 const Hero = ({
-  title = "Track Energy Use in Buildings",
+  title = "Denver MHA Energy Tracking",
   subtitle = "Welcome to our online community",
 }) => {
   return (

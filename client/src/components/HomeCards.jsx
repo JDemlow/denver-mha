@@ -7,24 +7,22 @@ const HomeCards = () => {
         <div className="grid w-5/6 gap-8 mx-auto md:grid-cols-2">
           <div className="p-6 bg-gray-100 rounded-lg shadow-lg">
             <h2 className="mb-4 text-2xl font-bold text-black">
-              For Developers
+              For Residents
             </h2>
             <p className="mb-4 text-gray-700">
-              Browse our React jobs and start your career today
+              Browse our list and edit your building
             </p>
             <button className="px-4 py-2 text-white bg-black rounded">
-              Browse Jobs
+              View All Buildings
             </button>
           </div>
           <div className="p-6 bg-blue-100 rounded-lg shadow-lg">
             <h2 className="mb-4 text-2xl font-bold text-black">
-              For Employers
+              For Administrators
             </h2>
-            <p className="mb-4 text-gray-700">
-              List your job to find the perfect developer for the role
-            </p>
-            <button className="px-4 py-2 text-white bg-blue-500 rounded">
-              Add Job
+            <p className="mb-4 text-gray-700">Log in to view your profile</p>
+            <button className="px-4 py-2 text-white rounded bg-emerald-500">
+              Log In
             </button>
           </div>
         </div>
