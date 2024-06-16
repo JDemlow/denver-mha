@@ -2,9 +2,11 @@ import React, { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
 import { FaMapMarker } from "react-icons/fa";
 import axios from "axios";
+import Spinner from "./Spinner";
 
 const BuildingsList = ({ isHome }) => {
   const [buildings, setBuildings] = useState([]);
+  const [loading, setLoading] = useState(true); // Add loading state
   const [error, setError] = useState(null);
 
   useEffect(() => {
@@ -23,6 +25,8 @@ const BuildingsList = ({ isHome }) => {
         setBuildings(buildingsData);
       } catch (err) {
         setError(err.message);
+      } finally {
+        setLoading(false); // Set loading to false after data is fetched
       }
     };
 
@@ -36,6 +40,10 @@ const BuildingsList = ({ isHome }) => {
       )
     );
   };
+
+  if (loading) {
+    return <Spinner loading={loading} />; // Display spinner while loading
+  }
 
   if (error) {
     return <div>Error: {error}</div>;
