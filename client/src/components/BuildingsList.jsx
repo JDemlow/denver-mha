@@ -1,37 +1,45 @@
-import React, { useState, useEffect } from "react";
-import axios from "axios";
-import { FaMapMarker } from "react-icons/fa";
+import React, { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
+import { FaMapMarker } from "react-icons/fa";
+import axios from "axios";
 
-const BuildingsList = () => {
+const BuildingsList = ({ isHome }) => {
   const [buildings, setBuildings] = useState([]);
+  const [error, setError] = useState(null);
 
   useEffect(() => {
     const fetchBuildings = async () => {
       try {
         const response = await axios.get("/api/buildings");
-        if (Array.isArray(response.data)) {
-          setBuildings(
-            response.data.map((building) => ({ ...building, expanded: false }))
-          );
-        } else {
-          console.error("Unexpected response data:", response.data);
+        let buildingsData = response.data;
+        if (isHome) {
+          buildingsData = buildingsData.slice(0, 3); // Only take the first 3 buildings
         }
-      } catch (error) {
-        console.error("Error fetching buildings:", error);
+        // Initialize each building with expanded: false
+        buildingsData = buildingsData.map((building) => ({
+          ...building,
+          expanded: false,
+        }));
+        setBuildings(buildingsData);
+      } catch (err) {
+        setError(err.message);
       }
     };
 
     fetchBuildings();
-  }, []);
+  }, [isHome]);
 
   const toggleDescription = (index) => {
-    setBuildings(
-      buildings.map((building, i) =>
+    setBuildings((prevBuildings) =>
+      prevBuildings.map((building, i) =>
         i === index ? { ...building, expanded: !building.expanded } : building
       )
     );
   };
+
+  if (error) {
+    return <div>Error: {error}</div>;
+  }
 
   return (
     <div className="min-h-screen p-6 bg-gray-100">

@@ -117,14 +117,14 @@ const Navbar = () => {
             </li>
             <li>
               <NavLink
-                to="/about"
+                to="/all-buildings"
                 className={({ isActive }) =>
                   isActive
                     ? "block px-3 py-2 text-white bg-emerald-700 rounded md:bg-transparent md:text-white md:p-0"
                     : "block px-3 py-2 text-gray-900 rounded hover:bg-gray-100 md:hover:bg-transparent md:hover:text-emerald-700 md:p-0"
                 }
               >
-                About
+                All Buildings
               </NavLink>
             </li>
             <li>
