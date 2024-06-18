@@ -7,3 +7,9 @@
   from = "/api/*"
   to = "/.netlify/functions/:splat"
   status = 200
+
+[functions]
+  node_bundler = "esbuild"  # Specify the bundler
+  included_files = [
+    "netlify/functions/**/*"
+  ]
