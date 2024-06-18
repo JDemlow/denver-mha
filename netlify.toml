@@ -1,6 +1,7 @@
 [build]
+  command = "npm run build --prefix client"
+  publish = "client/dist"
   functions = "netlify/functions"
-  publish = "dist" # Adjust if your build directory is different
 
 [[redirects]]
   from = "/api/*"
