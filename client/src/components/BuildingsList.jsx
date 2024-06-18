@@ -66,7 +66,7 @@ const BuildingsList = ({ isHome }) => {
               <div className="mb-5">
                 {building.expanded
                   ? building.description
-                  : `${building.description.substring(0, 90)}...`}
+                  : `${building.description.substring(0, 80)}...`}
               </div>
               <button
                 onClick={() => toggleDescription(index)}

@@ -1,4 +1,5 @@
 import React, { useEffect, useState } from "react";
+import { Link } from "react-router-dom";
 import { useParams } from "react-router-dom";
 import axios from "axios";
 
@@ -37,6 +38,13 @@ const IndividualBuildingPage = () => {
         <p className="mb-4">
           <strong>Rent:</strong> {building.rent}
         </p>
+      </div>
+      <div className="flex justify-center pt-10 align-center">
+        <Link to="/">
+          <button className="px-6 py-3 mt-4 text-lg text-white rounded-lg sm:px-40 bg-emerald-500 hover:bg-emerald-600">
+            Edit This Building
+          </button>
+        </Link>
       </div>
     </div>
   );
