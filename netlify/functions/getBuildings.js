@@ -1,8 +1,8 @@
-const { MongoClient } = require("mongodb");
+import { MongoClient } from "mongodb";
 
 const client = new MongoClient(process.env.MONGO_URI);
 
-async function handler(event, context) {
+export async function handler(event, context) {
   try {
     if (!client.isConnected()) await client.connect();
     const db = client.db("your-database-name");
@@ -20,5 +20,3 @@ async function handler(event, context) {
     };
   }
 }
-
-module.exports = { handler };
