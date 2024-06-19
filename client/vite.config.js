@@ -1,11 +1,11 @@
 import { defineConfig } from "vite";
 import react from "@vitejs/plugin-react";
 
-// Determine the API URL based on the environment
+// Use the deployed backend URL in production
 const apiURL =
   process.env.NODE_ENV === "production"
-    ? "https://https://denvermha.netlify.app/.netlify/functions"
-    : "http://localhost:5000/api";
+    ? "https://mongo-vite-app.onrender.com" // Replace with your actual backend URL
+    : "http://localhost:5000";
 
 // https://vitejs.dev/config/
 export default defineConfig({
