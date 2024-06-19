@@ -48,6 +48,7 @@ app.get("/api/buildings/:id", async (req, res) => {
 
 // Patch
 app.patch("/api/buildings/:id", async (req, res) => {
+  console.log(`PATCH request received for building with ID: ${req.params.id}`);
   try {
     const building = await Building.findByIdAndUpdate(req.params.id, req.body, {
       new: true,
