@@ -7,6 +7,7 @@ import ContactPage from "./pages/ContactPage";
 import IndividualBuildingPage from "./pages/IndividualBuildingPage";
 import NotFoundPage from "./pages/NotFoundPage";
 import AllBuildingsPage from "./pages/AllBuildingsPage";
+import EditBuildingPage from "./pages/EditBuildingPage";
 
 const App = () => {
   return (
@@ -16,6 +17,7 @@ const App = () => {
         <Route path="about" element={<AboutPage />} />
         <Route path="contact" element={<ContactPage />} />
         <Route path="buildings/:id" element={<IndividualBuildingPage />} />
+        <Route path="/edit-building/:id" element={<EditBuildingPage />} />
         <Route path="all-buildings" element={<AllBuildingsPage />} />{" "}
         <Route path="*" element={<NotFoundPage />} />{" "}
         {/* Catch-all route for 404 */}
