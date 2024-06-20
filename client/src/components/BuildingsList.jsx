@@ -1,86 +1,109 @@
-import React, { useEffect, useState } from "react";
+import React, { useState, useEffect } from "react";
 import { Link } from "react-router-dom";
-import { FaMapMarker } from "react-icons/fa";
 import axios from "axios";
-import Spinner from "./Spinner";
 
-const BuildingsList = ({ isHome }) => {
+const BuildingsList = ({ isHome = false }) => {
   const [buildings, setBuildings] = useState([]);
-  const [loading, setLoading] = useState(true); // Add loading state
-  const [error, setError] = useState(null);
+  const [loading, setLoading] = useState(true);
 
   useEffect(() => {
     const fetchBuildings = async () => {
       try {
         const response = await axios.get("/api/buildings");
-        let buildingsData = response.data;
-        if (isHome) {
-          buildingsData = buildingsData.slice(0, 3); // Only take the first 3 buildings
-        }
-        // Initialize each building with expanded: false
-        buildingsData = buildingsData.map((building) => ({
-          ...building,
-          expanded: false,
-        }));
-        setBuildings(buildingsData);
-      } catch (err) {
-        setError(err.message);
-      } finally {
-        setLoading(false); // Set loading to false after data is fetched
+        setBuildings(isHome ? response.data.slice(0, 3) : response.data);
+        setLoading(false);
+      } catch (error) {
+        console.error("Error fetching buildings:", error);
+        setLoading(false);
       }
     };
 
     fetchBuildings();
   }, [isHome]);
 
-  const toggleDescription = (index) => {
-    setBuildings((prevBuildings) =>
-      prevBuildings.map((building, i) =>
-        i === index ? { ...building, expanded: !building.expanded } : building
-      )
-    );
-  };
-
   if (loading) {
-    return <Spinner loading={loading} />; // Display spinner while loading
-  }
-
-  if (error) {
-    return <div>Error: {error}</div>;
+    return <div>Loading...</div>;
   }
 
   return (
     <div className="min-h-screen p-6 bg-gray-100">
-      <h1 className="mb-6 text-3xl font-bold text-center">Buildings List</h1>
+      <h1 className="mb-6 text-3xl font-bold text-center">
+        {isHome ? "Recent Buildings" : "Buildings List"}
+      </h1>
       <div className="grid grid-cols-1 gap-6 md:grid-cols-2 lg:grid-cols-3">
-        {buildings.map((building, index) => (
+        {buildings.map((building) => (
           <div
             key={building._id}
             className="relative bg-white shadow-md rounded-xl"
           >
             <div className="p-4">
               <div className="mb-6">
-                <div className="my-2 text-gray-600">{building.type}</div>
-                <h3 className="text-xl font-bold">{building.buildingName}</h3>
+                <div className="my-2 text-gray-600">
+                  Building ID: {building["Building ID:"]}
+                </div>
+                <h3 className="text-xl font-bold">
+                  Street Address: {building["Street Address:"]}
+                </h3>
               </div>
               <div className="mb-5">
-                {building.expanded
-                  ? building.description
-                  : `${building.description.substring(0, 80)}...`}
+                Building Size:{" "}
+                {building["Building Size:"]
+                  ? building["Building Size:"]
+                  : "No size information"}
               </div>
-              <button
-                onClick={() => toggleDescription(index)}
-                className="mb-5 text-emerald-500 hover:text-emerald-600"
-              >
-                {building.expanded ? "Show less" : "Show more"}
-              </button>
-              <h3 className="mb-2 text-emerald-500">{building.rent}</h3>
-              <div className="mb-5 border border-gray-100"></div>
-              <div className="flex flex-col justify-between mb-4 lg:flex-row">
-                <div className="mb-3 text-orange-700">
-                  <FaMapMarker className="inline mb-1 mr-2 text-lg" />
-                  {building.location}
-                </div>
+              <div className="mb-5">
+                Property Use 1st:{" "}
+                {building["Property Use 1st:"]
+                  ? building["Property Use 1st:"]
+                  : "N/A"}
+              </div>
+              <div className="mb-5">
+                Property Use 2nd:{" "}
+                {building["Property Use 2nd:"]
+                  ? building["Property Use 2nd:"]
+                  : "N/A"}
+              </div>
+              <div className="mb-5">
+                Property Use 3rd:{" "}
+                {building["Property Use 3rd:"]
+                  ? building["Property Use 3rd:"]
+                  : "N/A"}
+              </div>
+              <div className="mb-5">
+                Benchmarking Status:{" "}
+                {building["Benchmarking Status:"]
+                  ? building["Benchmarking Status:"]
+                  : "N/A"}
+              </div>
+              <div className="mb-5">
+                Current Site EUI:{" "}
+                {building["Current Site EUI:"]
+                  ? building["Current Site EUI:"]
+                  : "N/A"}
+              </div>
+              <div className="mb-5">
+                Baseline 2019 EUI:{" "}
+                {building["Baseline 2019 EUI:"]
+                  ? building["Baseline 2019 EUI:"]
+                  : "N/A"}
+              </div>
+              <div className="mb-5">
+                1st Target 2025 EUI:{" "}
+                {building["1st Target 2025 EUI:"]
+                  ? building["1st Target 2025 EUI:"]
+                  : "N/A"}
+              </div>
+              <div className="mb-5">
+                2nd Target 2027 EUI:{" "}
+                {building["2nd Target 2027 EUI:"]
+                  ? building["2nd Target 2027 EUI:"]
+                  : "N/A"}
+              </div>
+              <div className="mb-5">
+                Final Target 2030 EUI:{" "}
+                {building["Final Target 2030 EUI:"]
+                  ? building["Final Target 2030 EUI:"]
+                  : "N/A"}
               </div>
               <div className="flex justify-left">
                 <Link to={`/buildings/${building._id}`}>
@@ -92,13 +115,6 @@ const BuildingsList = ({ isHome }) => {
             </div>
           </div>
         ))}
-      </div>
-      <div className="flex justify-center pt-10 align-center">
-        <Link to="/">
-          <button className="px-6 py-3 mt-4 text-lg text-white rounded-lg sm:px-40 bg-emerald-500 hover:bg-emerald-600">
-            Add A New Building
-          </button>
-        </Link>
       </div>
     </div>
   );
