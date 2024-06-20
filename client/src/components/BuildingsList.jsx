@@ -4,6 +4,7 @@ import axios from "axios";
 
 const BuildingsList = ({ isHome = false }) => {
   const [buildings, setBuildings] = useState([]);
+  const [expandedAddresses, setExpandedAddresses] = useState({});
   const [loading, setLoading] = useState(true);
 
   useEffect(() => {
@@ -20,6 +21,13 @@ const BuildingsList = ({ isHome = false }) => {
 
     fetchBuildings();
   }, [isHome]);
+
+  const toggleAddress = (id) => {
+    setExpandedAddresses((prevState) => ({
+      ...prevState,
+      [id]: !prevState[id],
+    }));
+  };
 
   if (loading) {
     return <div>Loading...</div>;
@@ -41,8 +49,17 @@ const BuildingsList = ({ isHome = false }) => {
                 <div className="my-2 text-gray-600">
                   Building ID: {building["Building ID:"]}
                 </div>
-                <h3 className="text-xl font-bold">
-                  Street Address: {building["Street Address:"]}
+                <h3
+                  className="text-xl font-bold cursor-pointer"
+                  onClick={() => toggleAddress(building._id)}
+                >
+                  Street Address:{" "}
+                  <span>
+                    {expandedAddresses[building._id]
+                      ? building["Street Address:"]
+                      : `${building["Street Address:"].slice(0, 12)}`}
+                    <span className="text-gray-400">...</span>
+                  </span>
                 </h3>
               </div>
               <div className="mb-5">
