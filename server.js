@@ -11,10 +11,16 @@ const port = process.env.PORT || 5000;
 app.use(cors());
 app.use(express.json());
 
-mongoose.connect(process.env.MONGO_URI, {
-  useNewUrlParser: true,
-  useUnifiedTopology: true,
-});
+const connectToDatabase = async () => {
+  try {
+    await mongoose.connect(process.env.MONGO_URI, {});
+    console.log("CONNECTED TO DATABASE SUCCESSFULLY");
+  } catch (error) {
+    console.error("COULD NOT CONNECT TO DATABASE:", error.message);
+  }
+};
+
+connectToDatabase();
 
 const buildingSchema = new mongoose.Schema({
   id: String,
