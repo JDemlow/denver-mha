@@ -46,6 +46,18 @@ app.get("/api/buildings/:id", async (req, res) => {
   }
 });
 
+// Patch
+app.patch("/api/buildings/:id", async (req, res) => {
+  try {
+    const building = await Building.findByIdAndUpdate(req.params.id, req.body, {
+      new: true,
+    });
+    res.json(building);
+  } catch (err) {
+    res.status(500).send(err);
+  }
+});
+
 app.listen(port, () => {
   console.log(`Server is running on port: ${port}`);
 });
