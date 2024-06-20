@@ -1,9 +1,6 @@
 import { defineConfig } from "vite";
 import react from "@vitejs/plugin-react";
 
-// Determine the API URL based on the environment
-
-// https://vitejs.dev/config/
 export default defineConfig({
   plugins: [react()],
   server: {

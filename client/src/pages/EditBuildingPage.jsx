@@ -80,14 +80,6 @@ const EditBuildingPage = () => {
       .catch((error) => console.error("Error updating building:", error));
   };
 
-  if (loading) {
-    return <div>Loading...</div>;
-  }
-
-  if (error) {
-    return <div>Error: {error.message}</div>;
-  }
-
   return (
     <div className="min-h-screen p-6 bg-gray-100">
       <h1 className="mb-6 text-3xl font-bold text-center">Edit Building</h1>
