@@ -58,7 +58,10 @@ const BuildingsList = ({ isHome = false }) => {
                     {expandedAddresses[building._id]
                       ? building["Street Address:"]
                       : `${building["Street Address:"].slice(0, 12)}`}
-                    <span className="text-gray-400">...</span>
+                    {!expandedAddresses[building._id] &&
+                      building["Street Address:"].length > 12 && (
+                        <span className="text-gray-400">...</span>
+                      )}
                   </span>
                 </h3>
               </div>
