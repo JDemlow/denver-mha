@@ -1,9 +1,11 @@
 import React, { useState } from "react";
 import { NavLink } from "react-router-dom";
+import SpringModal from "./SpringModal";
 
 const Navbar = () => {
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
   const [isSearchOpen, setIsSearchOpen] = useState(false);
+  const [isOpen, setIsOpen] = useState(false);
 
   const toggleMobileMenu = () => {
     setIsMobileMenuOpen(!isMobileMenuOpen);
@@ -128,16 +130,13 @@ const Navbar = () => {
               </NavLink>
             </li>
             <li>
-              <NavLink
-                to="/contact"
-                className={({ isActive }) =>
-                  isActive
-                    ? "block px-3 py-2 text-white bg-emerald-700 rounded md:bg-emerald-700 md:text-white md:rounded-md"
-                    : "block px-3 py-2 text-gray-900 rounded hover:bg-emerald-100 md:hover:bg-emerald-700 md:hover:text-white md:rounded-md"
-                }
+              <button
+                className="block px-3 py-2 text-gray-900 rounded hover:bg-emerald-100 md:hover:bg-emerald-700 md:hover:text-white md:rounded-md"
+                onClick={() => setIsOpen(true)}
               >
-                Contact
-              </NavLink>
+                Add Building
+              </button>
+              <SpringModal isOpen={isOpen} setIsOpen={setIsOpen} />
             </li>
             <li>
               <NavLink
