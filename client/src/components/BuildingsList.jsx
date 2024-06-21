@@ -183,7 +183,7 @@ const BuildingsList = ({ isHome = false }) => {
           <Link>
             <button
               onClick={scrollToTop}
-              className="px-6 py-3 mt-4 text-lg text-white rounded-lg bg-emerald-500 hover:bg-emerald-600"
+              className="p-3 mt-4 text-lg text-white rounded-lg md:px-6 md:py-3 md:mt-4 bg-emerald-500 hover:bg-emerald-600"
             >
               Back to Top
             </button>
