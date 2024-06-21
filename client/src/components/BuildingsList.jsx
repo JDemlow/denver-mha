@@ -71,6 +71,7 @@ const BuildingsList = ({ isHome = false }) => {
   console.log("isHome:", isHome);
   console.log("visibleCount:", visibleCount);
   console.log("buildings.length:", buildings.length);
+  console.log("totalCount:", totalCount);
 
   const buildingsToShow = buildings.slice(0, visibleCount * (page + 1));
 
@@ -88,7 +89,7 @@ const BuildingsList = ({ isHome = false }) => {
             <div className="p-4">
               <div className="mb-6">
                 <div className="my-2 text-gray-600">
-                  Building ID: {building["Building ID:"]}
+                  Building ID: {building.buildingId}
                 </div>
                 <h3
                   className="text-xl font-bold cursor-pointer"
@@ -97,10 +98,10 @@ const BuildingsList = ({ isHome = false }) => {
                   Street Address:{" "}
                   <span>
                     {expandedAddresses[building._id]
-                      ? building["Street Address:"]
-                      : `${building["Street Address:"].slice(0, 12)}`}
+                      ? building.streetAddress
+                      : `${building.streetAddress.slice(0, 12)}`}
                     {!expandedAddresses[building._id] &&
-                      building["Street Address:"].length > 12 && (
+                      building.streetAddress.length > 12 && (
                         <span className="text-gray-400">...</span>
                       )}
                   </span>
@@ -108,62 +109,52 @@ const BuildingsList = ({ isHome = false }) => {
               </div>
               <div className="mb-5">
                 Building Size:{" "}
-                {building["Building Size:"]
-                  ? building["Building Size:"]
+                {building.buildingSize
+                  ? building.buildingSize
                   : "No size information"}
               </div>
               <div className="mb-5">
                 Property Use 1st:{" "}
-                {building["Property Use 1st:"]
-                  ? building["Property Use 1st:"]
-                  : "N/A"}
+                {building.propertyUse1st ? building.propertyUse1st : "N/A"}
               </div>
               <div className="mb-5">
                 Property Use 2nd:{" "}
-                {building["Property Use 2nd:"]
-                  ? building["Property Use 2nd:"]
-                  : "N/A"}
+                {building.propertyUse2nd ? building.propertyUse2nd : "N/A"}
               </div>
               <div className="mb-5">
                 Property Use 3rd:{" "}
-                {building["Property Use 3rd:"]
-                  ? building["Property Use 3rd:"]
-                  : "N/A"}
+                {building.propertyUse3rd ? building.propertyUse3rd : "N/A"}
               </div>
               <div className="mb-5">
                 Benchmarking Status:{" "}
-                {building["Benchmarking Status:"]
-                  ? building["Benchmarking Status:"]
+                {building.benchmarkingStatus
+                  ? building.benchmarkingStatus
                   : "N/A"}
               </div>
               <div className="mb-5">
                 Current Site EUI:{" "}
-                {building["Current Site EUI:"]
-                  ? building["Current Site EUI:"]
-                  : "N/A"}
+                {building.currentSiteEUI ? building.currentSiteEUI : "N/A"}
               </div>
               <div className="mb-5">
                 Baseline 2019 EUI:{" "}
-                {building["Baseline 2019 EUI:"]
-                  ? building["Baseline 2019 EUI:"]
-                  : "N/A"}
+                {building.baseline2019EUI ? building.baseline2019EUI : "N/A"}
               </div>
               <div className="mb-5">
                 1st Target 2025 EUI:{" "}
-                {building["1st Target 2025 EUI:"]
-                  ? building["1st Target 2025 EUI:"]
+                {building.firstTarget2025EUI
+                  ? building.firstTarget2025EUI
                   : "N/A"}
               </div>
               <div className="mb-5">
                 2nd Target 2027 EUI:{" "}
-                {building["2nd Target 2027 EUI:"]
-                  ? building["2nd Target 2027 EUI:"]
+                {building.secondTarget2027EUI
+                  ? building.secondTarget2027EUI
                   : "N/A"}
               </div>
               <div className="mb-5">
                 Final Target 2030 EUI:{" "}
-                {building["Final Target 2030 EUI:"]
-                  ? building["Final Target 2030 EUI:"]
+                {building.finalTarget2030EUI
+                  ? building.finalTarget2030EUI
                   : "N/A"}
               </div>
               <div className="flex justify-left">

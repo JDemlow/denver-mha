@@ -28,18 +28,18 @@ const EditBuildingPage = () => {
         const response = await axios.get(`/api/buildings/${id}`);
         const fetchedBuilding = response.data;
         setBuilding({
-          buildingId: fetchedBuilding["Building ID:"],
-          streetAddress: fetchedBuilding["Street Address:"],
-          buildingSize: fetchedBuilding["Building Size:"],
-          propertyUse1st: fetchedBuilding["Property Use 1st:"],
-          propertyUse2nd: fetchedBuilding["Property Use 2nd:"],
-          propertyUse3rd: fetchedBuilding["Property Use 3rd:"],
-          benchmarkingStatus: fetchedBuilding["Benchmarking Status:"],
-          currentSiteEUI: fetchedBuilding["Current Site EUI:"],
-          baseline2019EUI: fetchedBuilding["Baseline 2019 EUI:"],
-          firstTarget2025EUI: fetchedBuilding["1st Target 2025 EUI:"],
-          secondTarget2027EUI: fetchedBuilding["2nd Target 2027 EUI:"],
-          finalTarget2030EUI: fetchedBuilding["Final Target 2030 EUI:"],
+          buildingId: fetchedBuilding.buildingId,
+          streetAddress: fetchedBuilding.streetAddress,
+          buildingSize: fetchedBuilding.buildingSize,
+          propertyUse1st: fetchedBuilding.propertyUse1st,
+          propertyUse2nd: fetchedBuilding.propertyUse2nd,
+          propertyUse3rd: fetchedBuilding.propertyUse3rd,
+          benchmarkingStatus: fetchedBuilding.benchmarkingStatus,
+          currentSiteEUI: fetchedBuilding.currentSiteEUI,
+          baseline2019EUI: fetchedBuilding.baseline2019EUI,
+          firstTarget2025EUI: fetchedBuilding.firstTarget2025EUI,
+          secondTarget2027EUI: fetchedBuilding.secondTarget2027EUI,
+          finalTarget2030EUI: fetchedBuilding.finalTarget2030EUI,
         });
         setLoading(false);
       } catch (error) {
@@ -63,18 +63,18 @@ const EditBuildingPage = () => {
     e.preventDefault();
     try {
       const updatedBuilding = {
-        "Building ID:": building.buildingId,
-        "Street Address:": building.streetAddress,
-        "Building Size:": building.buildingSize,
-        "Property Use 1st:": building.propertyUse1st,
-        "Property Use 2nd:": building.propertyUse2nd,
-        "Property Use 3rd:": building.propertyUse3rd,
-        "Benchmarking Status:": building.benchmarkingStatus,
-        "Current Site EUI:": building.currentSiteEUI,
-        "Baseline 2019 EUI:": building.baseline2019EUI,
-        "1st Target 2025 EUI:": building.firstTarget2025EUI,
-        "2nd Target 2027 EUI:": building.secondTarget2027EUI,
-        "Final Target 2030 EUI:": building.finalTarget2030EUI,
+        buildingId: building.buildingId,
+        streetAddress: building.streetAddress,
+        buildingSize: building.buildingSize,
+        propertyUse1st: building.propertyUse1st,
+        propertyUse2nd: building.propertyUse2nd,
+        propertyUse3rd: building.propertyUse3rd,
+        benchmarkingStatus: building.benchmarkingStatus,
+        currentSiteEUI: building.currentSiteEUI,
+        baseline2019EUI: building.baseline2019EUI,
+        firstTarget2025EUI: building.firstTarget2025EUI,
+        secondTarget2027EUI: building.secondTarget2027EUI,
+        finalTarget2030EUI: building.finalTarget2030EUI,
       };
 
       const response = await axios.patch(

@@ -35,48 +35,44 @@ const IndividualBuildingPage = () => {
   return (
     <div className="min-h-screen p-6 bg-gray-100">
       <h1 className="mb-6 text-3xl font-bold text-center">
-        {building["Street Address:"]}
+        {building.streetAddress}
       </h1>
       <div className="p-4 bg-white shadow-md rounded-xl">
         <div className="mb-4">
-          <strong>Building ID:</strong> {building["Building ID:"]}
+          <strong>Building ID:</strong> {building.buildingId}
         </div>
         <div className="mb-4">
-          <strong>Street Address:</strong> {building["Street Address:"]}
+          <strong>Street Address:</strong> {building.streetAddress}
         </div>
         <div className="mb-4">
-          <strong>Building Size:</strong> {building["Building Size:"]}
+          <strong>Building Size:</strong> {building.buildingSize}
         </div>
         <div className="mb-4">
-          <strong>Property Use 1st:</strong> {building["Property Use 1st:"]}
+          <strong>Property Use 1st:</strong> {building.propertyUse1st}
         </div>
         <div className="mb-4">
-          <strong>Property Use 2nd:</strong> {building["Property Use 2nd:"]}
+          <strong>Property Use 2nd:</strong> {building.propertyUse2nd}
         </div>
         <div className="mb-4">
-          <strong>Property Use 3rd:</strong> {building["Property Use 3rd:"]}
+          <strong>Property Use 3rd:</strong> {building.propertyUse3rd}
         </div>
         <div className="mb-4">
-          <strong>Benchmarking Status:</strong>{" "}
-          {building["Benchmarking Status:"]}
+          <strong>Benchmarking Status:</strong> {building.benchmarkingStatus}
         </div>
         <div className="mb-4">
-          <strong>Current Site EUI:</strong> {building["Current Site EUI:"]}
+          <strong>Current Site EUI:</strong> {building.currentSiteEUI}
         </div>
         <div className="mb-4">
-          <strong>Baseline 2019 EUI:</strong> {building["Baseline 2019 EUI:"]}
+          <strong>Baseline 2019 EUI:</strong> {building.baseline2019EUI}
         </div>
         <div className="mb-4">
-          <strong>1st Target 2025 EUI:</strong>{" "}
-          {building["1st Target 2025 EUI:"]}
+          <strong>1st Target 2025 EUI:</strong> {building.firstTarget2025EUI}
         </div>
         <div className="mb-4">
-          <strong>2nd Target 2027 EUI:</strong>{" "}
-          {building["2nd Target 2027 EUI:"]}
+          <strong>2nd Target 2027 EUI:</strong> {building.secondTarget2027EUI}
         </div>
         <div className="mb-4">
-          <strong>Final Target 2030 EUI:</strong>{" "}
-          {building["Final Target 2030 EUI:"]}
+          <strong>Final Target 2030 EUI:</strong> {building.finalTarget2030EUI}
         </div>
       </div>
       <div className="flex justify-center pt-10 align-center">
