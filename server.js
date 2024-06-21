@@ -23,13 +23,18 @@ const connectToDatabase = async () => {
 connectToDatabase();
 
 const buildingSchema = new mongoose.Schema({
-  id: String,
-  buildingName: String,
-  type: String,
-  description: String,
-  location: String,
-  rent: String,
-  company: Object,
+  buildingId: String,
+  streetAddress: String,
+  buildingSize: String,
+  propertyUse1st: String,
+  propertyUse2nd: String,
+  propertyUse3rd: String,
+  benchmarkingStatus: String,
+  currentSiteEUI: String,
+  baseline2019EUI: String,
+  firstTarget2025EUI: String,
+  secondTarget2027EUI: String,
+  finalTarget2030EUI: String,
 });
 
 const Building = mongoose.model("Building", buildingSchema);
