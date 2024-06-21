@@ -21,27 +21,27 @@ const connectToDatabase = async () => {
 };
 
 connectToDatabase();
+
 const buildingSchema = new mongoose.Schema({
-  buildingId: Number,
-  streetAddress: String,
-  buildingSize: String,
-  propertyUse1st: String,
-  propertyUse2nd: String,
-  propertyUse3rd: String,
-  benchmarkingStatus: String,
-  currentSiteEUI: Number,
-  baseline2019EUI: Number,
-  firstTarget2025EUI: Number,
-  secondTarget2027EUI: Number,
-  finalTarget2030EUI: Number,
+  id: String,
+  buildingName: String,
+  type: String,
+  description: String,
+  location: String,
+  rent: String,
+  company: Object,
 });
 
 const Building = mongoose.model("Building", buildingSchema);
 
 app.get("/api/buildings", async (req, res) => {
   try {
-    const buildings = await Building.find();
-    res.json(buildings);
+    const page = parseInt(req.query.page) || 1;
+    const limit = parseInt(req.query.limit) || 12;
+    const skip = (page - 1) * limit;
+    const buildings = await Building.find().skip(skip).limit(limit);
+    const total = await Building.countDocuments();
+    res.json({ buildings, total });
   } catch (err) {
     res.status(500).send(err);
   }
@@ -56,7 +56,6 @@ app.get("/api/buildings/:id", async (req, res) => {
   }
 });
 
-// Patch
 app.patch("/api/buildings/:id", async (req, res) => {
   try {
     const building = await Building.findByIdAndUpdate(req.params.id, req.body, {

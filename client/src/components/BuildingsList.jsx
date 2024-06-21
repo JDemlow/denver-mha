@@ -1,17 +1,19 @@
 import React, { useState, useEffect } from "react";
 import { Link } from "react-router-dom";
 import axios from "axios";
+import Spinner from "./Spinner";
 
 const BuildingsList = ({ isHome = false }) => {
   const [buildings, setBuildings] = useState([]);
   const [expandedAddresses, setExpandedAddresses] = useState({});
   const [loading, setLoading] = useState(true);
+  const [visibleCount, setVisibleCount] = useState(isHome ? 3 : 12);
 
   useEffect(() => {
     const fetchBuildings = async () => {
       try {
         const response = await axios.get("/api/buildings");
-        setBuildings(isHome ? response.data.slice(0, 3) : response.data);
+        setBuildings(response.data);
         setLoading(false);
       } catch (error) {
         console.error("Error fetching buildings:", error);
@@ -22,6 +24,10 @@ const BuildingsList = ({ isHome = false }) => {
     fetchBuildings();
   }, [isHome]);
 
+  const loadMoreBuildings = () => {
+    setVisibleCount((prevCount) => prevCount + 12);
+  };
+
   const toggleAddress = (id) => {
     setExpandedAddresses((prevState) => ({
       ...prevState,
@@ -30,8 +36,14 @@ const BuildingsList = ({ isHome = false }) => {
   };
 
   if (loading) {
-    return <div>Loading...</div>;
+    return (
+      <div>
+        <Spinner loading={loading} />
+      </div>
+    );
   }
+
+  const buildingsToShow = buildings.slice(0, visibleCount);
 
   return (
     <div className="min-h-screen p-6 bg-gray-100">
@@ -39,7 +51,7 @@ const BuildingsList = ({ isHome = false }) => {
         {isHome ? "Recent Buildings" : "Buildings List"}
       </h1>
       <div className="grid grid-cols-1 gap-6 md:grid-cols-2 lg:grid-cols-3">
-        {buildings.map((building) => (
+        {buildingsToShow.map((building) => (
           <div
             key={building._id}
             className="relative bg-white shadow-md rounded-xl"
@@ -136,6 +148,16 @@ const BuildingsList = ({ isHome = false }) => {
           </div>
         ))}
       </div>
+      {!isHome && visibleCount < buildings.length && (
+        <div className="flex justify-center pt-6 pb-6 align-center">
+          <button
+            onClick={loadMoreBuildings}
+            className="px-6 py-3 mt-4 text-lg text-white rounded-lg bg-emerald-500 hover:bg-emerald-600"
+          >
+            Show More Buildings
+          </button>
+        </div>
+      )}
     </div>
   );
 };
