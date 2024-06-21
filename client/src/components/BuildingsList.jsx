@@ -8,12 +8,29 @@ const BuildingsList = ({ isHome = false }) => {
   const [expandedAddresses, setExpandedAddresses] = useState({});
   const [loading, setLoading] = useState(true);
   const [visibleCount, setVisibleCount] = useState(isHome ? 3 : 12);
+  const [page, setPage] = useState(0);
+  const [hasMore, setHasMore] = useState(true);
+  const [totalCount, setTotalCount] = useState(0);
 
   useEffect(() => {
     const fetchBuildings = async () => {
       try {
-        const response = await axios.get("/api/buildings");
-        setBuildings(response.data);
+        const response = await axios.get(
+          `/api/buildings?limit=${visibleCount}&skip=${page * visibleCount}`
+        );
+        console.log("API response:", response.data);
+        if (response.data && Array.isArray(response.data.buildings)) {
+          setBuildings((prevBuildings) => [
+            ...prevBuildings,
+            ...response.data.buildings,
+          ]);
+          setTotalCount(response.data.total);
+          setHasMore(response.data.buildings.length > 0);
+        } else {
+          console.error("Expected an array but got:", response.data);
+          setBuildings([]);
+          setHasMore(false);
+        }
         setLoading(false);
       } catch (error) {
         console.error("Error fetching buildings:", error);
@@ -22,10 +39,10 @@ const BuildingsList = ({ isHome = false }) => {
     };
 
     fetchBuildings();
-  }, [isHome]);
+  }, [page, visibleCount, isHome]);
 
   const loadMoreBuildings = () => {
-    setVisibleCount((prevCount) => prevCount + 12);
+    setPage((prevPage) => prevPage + 1);
   };
 
   const scrollToTop = () => {
@@ -47,7 +64,15 @@ const BuildingsList = ({ isHome = false }) => {
     );
   }
 
-  const buildingsToShow = buildings.slice(0, visibleCount);
+  if (!Array.isArray(buildings)) {
+    return <div>Error: Expected buildings to be an array</div>;
+  }
+
+  console.log("isHome:", isHome);
+  console.log("visibleCount:", visibleCount);
+  console.log("buildings.length:", buildings.length);
+
+  const buildingsToShow = buildings.slice(0, visibleCount * (page + 1));
 
   return (
     <div className="min-h-screen p-6 bg-gray-100">
@@ -153,7 +178,7 @@ const BuildingsList = ({ isHome = false }) => {
         ))}
       </div>
       <div className="flex justify-center p-4 align-center">
-        {!isHome && visibleCount < buildings.length && (
+        {!isHome && buildings.length < totalCount && (
           <div className="mr-4">
             <button
               onClick={loadMoreBuildings}

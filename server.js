@@ -40,15 +40,14 @@ const buildingSchema = new mongoose.Schema({
 const Building = mongoose.model("Building", buildingSchema);
 
 app.get("/api/buildings", async (req, res) => {
+  const limit = parseInt(req.query.limit) || 10;
+  const skip = parseInt(req.query.skip) || 0;
   try {
-    const page = parseInt(req.query.page) || 1;
-    const limit = parseInt(req.query.limit) || 12;
-    const skip = (page - 1) * limit;
-    const buildings = await Building.find().skip(skip).limit(limit);
+    const buildings = await Building.find().limit(limit).skip(skip);
     const total = await Building.countDocuments();
     res.json({ buildings, total });
-  } catch (err) {
-    res.status(500).send(err);
+  } catch (error) {
+    res.status(500).json({ error: "Failed to fetch buildings" });
   }
 });
 
@@ -58,6 +57,15 @@ app.get("/api/buildings/:id", async (req, res) => {
     res.json(building);
   } catch (err) {
     res.status(500).send(err);
+  }
+});
+
+app.get("/api/buildings/count", async (req, res) => {
+  try {
+    const count = await Building.countDocuments();
+    res.json({ count });
+  } catch (error) {
+    res.status(500).json({ error: "Failed to fetch building count" });
   }
 });
 
