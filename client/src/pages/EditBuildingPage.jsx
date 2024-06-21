@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from "react";
 import { useParams, useNavigate } from "react-router-dom";
 import axios from "axios";
+import { toast } from "react-toastify";
 
 const EditBuildingPage = () => {
   const { id } = useParams();
@@ -45,6 +46,7 @@ const EditBuildingPage = () => {
       } catch (error) {
         setError(error);
         setLoading(false);
+        toast.error("Error fetching building data");
       }
     };
 
@@ -82,9 +84,11 @@ const EditBuildingPage = () => {
         updatedBuilding
       );
       console.log("Building updated:", response.data);
+      toast.success("Building updated successfully");
       navigate(`/buildings/${id}`);
     } catch (error) {
       console.error("Error updating building:", error);
+      toast.error("Error updating building");
     }
   };
 
