@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import { NavLink } from "react-router-dom";
-import SpringModal from "./SpringModal";
+import AddBuildingModal from "./AddBuilidngModal";
 
 const Navbar = () => {
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
@@ -136,7 +136,7 @@ const Navbar = () => {
               >
                 Add Building
               </button>
-              <SpringModal isOpen={isOpen} setIsOpen={setIsOpen} />
+              <AddBuildingModal isOpen={isOpen} setIsOpen={setIsOpen} />
             </li>
             <li>
               <NavLink
