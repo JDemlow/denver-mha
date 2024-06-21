@@ -168,7 +168,7 @@ const BuildingsList = ({ isHome = false }) => {
           </div>
         ))}
       </div>
-      <div className="flex justify-center p-4 align-center">
+      <div className="flex justify-center p-4 mr-4 md:mr-0 align-center">
         {!isHome && buildings.length < totalCount && (
           <div className="mr-4">
             <button
