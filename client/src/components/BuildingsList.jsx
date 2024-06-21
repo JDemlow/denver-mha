@@ -28,6 +28,10 @@ const BuildingsList = ({ isHome = false }) => {
     setVisibleCount((prevCount) => prevCount + 12);
   };
 
+  const scrollToTop = () => {
+    window.scrollTo({ top: 0, behavior: "smooth" });
+  };
+
   const toggleAddress = (id) => {
     setExpandedAddresses((prevState) => ({
       ...prevState,
@@ -148,16 +152,28 @@ const BuildingsList = ({ isHome = false }) => {
           </div>
         ))}
       </div>
-      {!isHome && visibleCount < buildings.length && (
-        <div className="flex justify-center pt-6 pb-6 align-center">
-          <button
-            onClick={loadMoreBuildings}
-            className="px-6 py-3 mt-4 text-lg text-white rounded-lg bg-emerald-500 hover:bg-emerald-600"
-          >
-            Show More Buildings
-          </button>
+      <div className="flex justify-center p-4 align-center">
+        {!isHome && visibleCount < buildings.length && (
+          <div className="mr-4">
+            <button
+              onClick={loadMoreBuildings}
+              className="px-6 py-3 mt-4 text-lg text-white rounded-lg bg-emerald-500 hover:bg-emerald-600"
+            >
+              Show More Buildings
+            </button>
+          </div>
+        )}
+        <div>
+          <Link>
+            <button
+              onClick={scrollToTop}
+              className="px-6 py-3 mt-4 text-lg text-white rounded-lg bg-emerald-500 hover:bg-emerald-600"
+            >
+              Back to Top
+            </button>
+          </Link>
         </div>
-      )}
+      </div>
     </div>
   );
 };
