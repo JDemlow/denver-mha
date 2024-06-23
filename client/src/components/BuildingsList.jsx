@@ -168,26 +168,28 @@ const BuildingsList = ({ isHome = false }) => {
           </div>
         ))}
       </div>
-      <div className="flex justify-center p-4 mr-4 md:mr-0 align-center">
-        {!isHome && buildings.length < totalCount && (
-          <div className="mr-4">
-            <button
-              onClick={loadMoreBuildings}
-              className="px-6 py-3 mt-4 text-lg text-white rounded-lg bg-emerald-500 hover:bg-emerald-600"
-            >
-              Show More Buildings
-            </button>
+      <div className="flex flex-col items-center justify-center pt-2">
+        <div className="flex flex-col items-center justify-center space-y-2 place-items-center">
+          {!isHome && buildings.length < totalCount && (
+            <div>
+              <button
+                onClick={loadMoreBuildings}
+                className="px-6 py-3 mt-4 text-lg text-white rounded-lg bg-emerald-500 hover:bg-emerald-600"
+              >
+                Show More Buildings
+              </button>
+            </div>
+          )}
+          <div>
+            <Link>
+              <button
+                onClick={scrollToTop}
+                className="p-3 mt-4 text-lg text-white rounded-lg md:px-6 md:py-3 md:mt-4 bg-emerald-500 hover:bg-emerald-600"
+              >
+                Back to Top
+              </button>
+            </Link>
           </div>
-        )}
-        <div>
-          <Link>
-            <button
-              onClick={scrollToTop}
-              className="p-3 mt-4 text-lg text-white rounded-lg md:px-6 md:py-3 md:mt-4 bg-emerald-500 hover:bg-emerald-600"
-            >
-              Back to Top
-            </button>
-          </Link>
         </div>
       </div>
     </div>
