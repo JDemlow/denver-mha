@@ -2,6 +2,7 @@ import React, { useState, useEffect } from "react";
 import { useParams, useNavigate } from "react-router-dom";
 import axios from "axios";
 import { toast } from "react-toastify";
+import Spinner from "../components/Spinner";
 
 const EditBuildingPage = () => {
   const { id } = useParams();
@@ -93,7 +94,11 @@ const EditBuildingPage = () => {
   };
 
   if (loading) {
-    return <div>Loading...</div>;
+    return (
+      <div>
+        <Spinner />
+      </div>
+    );
   }
 
   if (error) {
