@@ -4,6 +4,7 @@ import { NavLink } from "react-router-dom";
 const Navbar = () => {
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
   const [isSearchOpen, setIsSearchOpen] = useState(false);
+  const [isOpen, setIsOpen] = useState(false);
 
   const toggleMobileMenu = () => {
     setIsMobileMenuOpen(!isMobileMenuOpen);
@@ -129,14 +130,14 @@ const Navbar = () => {
             </li>
             <li>
               <NavLink
-                to="/contact"
+                to="/add-building"
                 className={({ isActive }) =>
                   isActive
                     ? "block px-3 py-2 text-white bg-emerald-700 rounded md:bg-emerald-700 md:text-white md:rounded-md"
                     : "block px-3 py-2 text-gray-900 rounded hover:bg-emerald-100 md:hover:bg-emerald-700 md:hover:text-white md:rounded-md"
                 }
               >
-                Contact
+                Add Building
               </NavLink>
             </li>
             <li>
