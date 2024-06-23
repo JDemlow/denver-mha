@@ -80,6 +80,17 @@ app.patch("/api/buildings/:id", async (req, res) => {
   }
 });
 
+app.post("/api/buildings", async (req, res) => {
+  try {
+    const building = new Building(req.body);
+    await building.save();
+    res.json(building);
+  } catch (err) {
+    console.error("Error adding building:", err);
+    res.status(500).json({ error: err.message });
+  }
+});
+
 app.listen(port, () => {
   console.log(`Server is running on port: ${port}`);
 });

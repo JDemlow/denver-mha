@@ -2,7 +2,7 @@ import React from "react";
 import { AnimatePresence, motion } from "framer-motion";
 import { FiAlertCircle } from "react-icons/fi";
 
-const AddBuildingModal = ({ isOpen, setIsOpen }) => {
+const SpringModal = ({ isOpen, setIsOpen }) => {
   return (
     <AnimatePresence>
       {isOpen && (
@@ -54,4 +54,4 @@ const AddBuildingModal = ({ isOpen, setIsOpen }) => {
   );
 };
 
-export default AddBuildingModal;
+export default SpringModal;
