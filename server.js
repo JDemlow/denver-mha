@@ -39,6 +39,9 @@ const buildingSchema = new mongoose.Schema({
 
 const Building = mongoose.model("Building", buildingSchema);
 
+// API ROUTES
+
+// GET ALL BUILDINGS
 app.get("/api/buildings", async (req, res) => {
   const limit = parseInt(req.query.limit) || 10;
   const skip = parseInt(req.query.skip) || 0;
@@ -51,6 +54,7 @@ app.get("/api/buildings", async (req, res) => {
   }
 });
 
+// GET SINGLE BUILDING
 app.get("/api/buildings/:id", async (req, res) => {
   try {
     const building = await Building.findById(req.params.id);
@@ -60,6 +64,7 @@ app.get("/api/buildings/:id", async (req, res) => {
   }
 });
 
+// GET BUILDING COUNT
 app.get("/api/buildings/count", async (req, res) => {
   try {
     const count = await Building.countDocuments();
@@ -69,6 +74,7 @@ app.get("/api/buildings/count", async (req, res) => {
   }
 });
 
+// UPDATE BUILDING
 app.patch("/api/buildings/:id", async (req, res) => {
   try {
     const building = await Building.findByIdAndUpdate(req.params.id, req.body, {
@@ -80,6 +86,7 @@ app.patch("/api/buildings/:id", async (req, res) => {
   }
 });
 
+// ADD BUILDING
 app.post("/api/buildings", async (req, res) => {
   try {
     const building = new Building(req.body);
