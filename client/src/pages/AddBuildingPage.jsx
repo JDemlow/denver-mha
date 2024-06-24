@@ -4,6 +4,9 @@ import { useNavigate } from "react-router-dom";
 import { toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 
+const API_BASE_URL =
+  process.env.REACT_APP_API_BASE_URL || "/.netlify/functions";
+
 const AddBuildingPage = () => {
   const [building, setBuilding] = useState({
     buildingId: "",
@@ -32,7 +35,10 @@ const AddBuildingPage = () => {
   const handleSubmit = async (e) => {
     e.preventDefault();
     try {
-      const response = await axios.post("/api/buildings", building);
+      const response = await axios.post(
+        `${API_BASE_URL}/addBuilding`,
+        building
+      );
       console.log("Building added:", response.data);
       toast.success("Building Added Successfully!");
       navigate("/all-buildings");

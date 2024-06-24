@@ -4,6 +4,9 @@ import { useParams } from "react-router-dom";
 import axios from "axios";
 import Spinner from "../components/Spinner";
 
+const API_BASE_URL =
+  process.env.REACT_APP_API_BASE_URL || "/.netlify/functions";
+
 const IndividualBuildingPage = () => {
   const { id } = useParams();
   const [building, setBuilding] = useState(null);
@@ -12,7 +15,9 @@ const IndividualBuildingPage = () => {
   useEffect(() => {
     const fetchBuilding = async () => {
       try {
-        const response = await axios.get(`/api/buildings/${id}`);
+        const response = await axios.get(
+          `${API_BASE_URL}/getBuildingById?id=${id}`
+        );
         setBuilding(response.data);
         setLoading(false);
       } catch (error) {

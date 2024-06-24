@@ -4,6 +4,9 @@ import axios from "axios";
 import { toast } from "react-toastify";
 import Spinner from "../components/Spinner";
 
+const API_BASE_URL =
+  process.env.REACT_APP_API_BASE_URL || "/.netlify/functions";
+
 const EditBuildingPage = () => {
   const { id } = useParams();
   const [building, setBuilding] = useState({
@@ -27,7 +30,9 @@ const EditBuildingPage = () => {
   useEffect(() => {
     const fetchBuilding = async () => {
       try {
-        const response = await axios.get(`/api/buildings/${id}`);
+        const response = await axios.get(
+          `${API_BASE_URL}/getBuildingById?id=${id}`
+        );
         const fetchedBuilding = response.data;
         setBuilding({
           buildingId: fetchedBuilding.buildingId,
@@ -81,7 +86,7 @@ const EditBuildingPage = () => {
       };
 
       const response = await axios.patch(
-        `/api/buildings/${id}`,
+        `${API_BASE_URL}/updateBuilding?id=${id}`,
         updatedBuilding
       );
       console.log("Building updated:", response.data);
