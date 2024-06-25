@@ -2,15 +2,18 @@ import express from "express";
 import mongoose from "mongoose";
 import cors from "cors";
 import dotenv from "dotenv";
-import Building from "./models/building.js"; // Import the model
+import path from "path";
+import { fileURLToPath } from "url";
+import Building from "./models/building.js"; // Ensure the correct path with .js extension
 
 dotenv.config();
 
 const app = express();
 const port = process.env.PORT || 5000;
 
+// Middlewares
 app.use(cors());
-app.use(express.json());
+app.use(express.json()); // Middleware to parse JSON requests
 
 const connectToDatabase = async () => {
   try {
@@ -80,6 +83,17 @@ app.post("/api/buildings", async (req, res) => {
     console.error("Error adding building:", err);
     res.status(500).json({ error: err.message });
   }
+});
+
+// Static files and SPA fallback
+const __filename = fileURLToPath(import.meta.url);
+const __dirname = path.dirname(__filename);
+
+app.use(express.static(path.join(__dirname, "client", "dist")));
+
+// The "catchall" handler: for any request that doesn't match an API route, send back index.html
+app.get("*", (req, res) => {
+  res.sendFile(path.join(__dirname, "client", "dist", "index.html"));
 });
 
 app.listen(port, () => {

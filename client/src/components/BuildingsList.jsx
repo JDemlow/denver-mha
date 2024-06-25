@@ -18,7 +18,7 @@ const BuildingsList = ({ isHome = false }) => {
     const fetchBuildings = async () => {
       try {
         const response = await axios.get(
-          `${API_BASE_URL}/buildings?limit=${visibleCount}&skip=${
+          `${API_BASE_URL}/api/getBuildings?limit=${visibleCount}&skip=${
             page * visibleCount
           }`
         );
