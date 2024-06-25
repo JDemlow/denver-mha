@@ -1,5 +1,5 @@
 import mongoose from "mongoose";
-import Building from "../../models/building";
+import Building from "../../models/building.js";
 import dotenv from "dotenv";
 
 dotenv.config();
@@ -26,11 +26,19 @@ export const handler = async (event, context) => {
     const total = await Building.countDocuments();
     return {
       statusCode: 200,
+      headers: {
+        "Access-Control-Allow-Origin": "*", // Allow all origins
+        "Access-Control-Allow-Headers": "Content-Type",
+      },
       body: JSON.stringify({ buildings, total }),
     };
   } catch (error) {
     return {
       statusCode: 500,
+      headers: {
+        "Access-Control-Allow-Origin": "*", // Allow all origins
+        "Access-Control-Allow-Headers": "Content-Type",
+      },
       body: JSON.stringify({ error: "Failed to fetch buildings" }),
     };
   }
