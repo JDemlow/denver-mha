@@ -4,8 +4,7 @@ import { useNavigate } from "react-router-dom";
 import { toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 
-const API_BASE_URL =
-  process.env.REACT_APP_API_BASE_URL || "/.netlify/functions";
+const API_BASE_URL = import.meta.env.VITE_API_BASE_URL || "/.netlify/functions";
 
 const AddBuildingPage = () => {
   const [building, setBuilding] = useState({

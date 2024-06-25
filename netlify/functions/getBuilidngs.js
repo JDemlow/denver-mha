@@ -1,5 +1,5 @@
 import mongoose from "mongoose";
-import Building from "./models/building"; // Adjust the path to your models
+import Building from "./models/building.js";
 import dotenv from "dotenv";
 
 dotenv.config();
@@ -13,7 +13,8 @@ const connectToDatabase = async () => {
   }
 };
 
-export async function handler(event, context) {
+export async function handler(event) {
+  // Removed context parameter
   await connectToDatabase();
 
   const limit = parseInt(event.queryStringParameters.limit) || 10;

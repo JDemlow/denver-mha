@@ -1,5 +1,5 @@
 import mongoose from "mongoose";
-import Building from "./models/building"; // Adjust the path to your models
+import Building from "./models/building.js";
 import dotenv from "dotenv";
 
 dotenv.config();

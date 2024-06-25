@@ -2,6 +2,7 @@ import express from "express";
 import mongoose from "mongoose";
 import cors from "cors";
 import dotenv from "dotenv";
+import Building from "./models/building.js"; // Import the model
 
 dotenv.config();
 
@@ -22,27 +23,10 @@ const connectToDatabase = async () => {
 
 connectToDatabase();
 
-const buildingSchema = new mongoose.Schema({
-  buildingId: String,
-  streetAddress: String,
-  buildingSize: String,
-  propertyUse1st: String,
-  propertyUse2nd: String,
-  propertyUse3rd: String,
-  benchmarkingStatus: String,
-  currentSiteEUI: Number,
-  baseline2019EUI: Number,
-  firstTarget2025EUI: Number,
-  secondTarget2027EUI: Number,
-  finalTarget2030EUI: Number,
-});
-
-const Building = mongoose.model("Building", buildingSchema);
-
 // API ROUTES
 
 // GET ALL BUILDINGS
-app.get("/api/buildings", async (req, res) => {
+app.get("/api/getBuildings", async (req, res) => {
   const limit = parseInt(req.query.limit) || 10;
   const skip = parseInt(req.query.skip) || 0;
   try {
