@@ -1,9 +1,7 @@
 import React, { useState, useEffect } from "react";
-import { Link } from "react-router-dom";
 import axios from "axios";
+import { Link } from "react-router-dom";
 import Spinner from "./Spinner";
-
-const API_BASE_URL = import.meta.env.VITE_API_BASE_URL || "/.netlify/functions";
 
 const BuildingsList = ({ isHome = false }) => {
   const [buildings, setBuildings] = useState([]);
@@ -18,9 +16,7 @@ const BuildingsList = ({ isHome = false }) => {
     const fetchBuildings = async () => {
       try {
         const response = await axios.get(
-          `${API_BASE_URL}/api/getBuildings?limit=${visibleCount}&skip=${
-            page * visibleCount
-          }`
+          `/api/getBuildings?limit=${visibleCount}&skip=${page * visibleCount}`
         );
         console.log("API response:", response.data);
         if (response.data && Array.isArray(response.data.buildings)) {

@@ -1,20 +1,21 @@
 import mongoose from "mongoose";
-import Building from "./models/building.js";
+import Building from "../../models/building";
 import dotenv from "dotenv";
 
 dotenv.config();
 
 const connectToDatabase = async () => {
   if (mongoose.connection.readyState === 0) {
-    await mongoose.connect(process.env.MONGO_URI, {
-      useNewUrlParser: true,
-      useUnifiedTopology: true,
-    });
+    try {
+      await mongoose.connect(process.env.MONGO_URI, {});
+      console.log("CONNECTED TO DATABASE SUCCESSFULLY");
+    } catch (error) {
+      console.error("COULD NOT CONNECT TO DATABASE:", error.message);
+    }
   }
 };
 
-export async function handler(event) {
-  // Removed context parameter
+export const handler = async (event, context) => {
   await connectToDatabase();
 
   const limit = parseInt(event.queryStringParameters.limit) || 10;
@@ -33,4 +34,4 @@ export async function handler(event) {
       body: JSON.stringify({ error: "Failed to fetch buildings" }),
     };
   }
-}
+};
