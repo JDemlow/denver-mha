@@ -16,8 +16,6 @@ const connectToDatabase = async () => {
 };
 
 export const handler = async (event, context) => {
-  const startTime = Date.now(); // Capture the start time
-
   await connectToDatabase();
 
   const limit = parseInt(event.queryStringParameters.limit) || 10;
@@ -26,19 +24,13 @@ export const handler = async (event, context) => {
   try {
     const buildings = await Building.find().limit(limit).skip(skip);
     const total = await Building.countDocuments();
-
-    const endTime = Date.now(); // Capture the end time
-    const duration = endTime - startTime; // Calculate the duration
-
-    console.log(`Function execution time: ${duration} ms`);
-
     return {
       statusCode: 200,
       headers: {
         "Access-Control-Allow-Origin": "*", // Allow all origins
         "Access-Control-Allow-Headers": "Content-Type",
       },
-      body: JSON.stringify({ buildings, total, duration }), // Include duration in the response
+      body: JSON.stringify({ buildings, total }),
     };
   } catch (error) {
     return {
