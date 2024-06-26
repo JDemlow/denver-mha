@@ -4,16 +4,16 @@ import cors from "cors";
 import dotenv from "dotenv";
 import path from "path";
 import { fileURLToPath } from "url";
-import Building from "./models/building.js"; // Ensure the correct path with .js extension
+import Building from "./models/building.js";
 
 dotenv.config();
 
 const app = express();
 const port = process.env.PORT || 5000;
 
-// Middlewares
+// Middleware
 app.use(cors());
-app.use(express.json()); // Middleware to parse JSON requests
+app.use(express.json());
 
 const connectToDatabase = async () => {
   try {
@@ -85,13 +85,11 @@ app.post("/api/buildings", async (req, res) => {
   }
 });
 
-// Static files and SPA fallback
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);
 
 app.use(express.static(path.join(__dirname, "client", "dist")));
 
-// The "catchall" handler: for any request that doesn't match an API route, send back index.html
 app.get("*", (req, res) => {
   res.sendFile(path.join(__dirname, "client", "dist", "index.html"));
 });

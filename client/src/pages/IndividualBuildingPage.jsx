@@ -4,7 +4,7 @@ import { useParams } from "react-router-dom";
 import axios from "axios";
 import Spinner from "../components/Spinner";
 
-const API_BASE_URL = import.meta.env.VITE_API_BASE_URL || "/.netlify/functions";
+const API_BASE_URL = "/api";
 
 const IndividualBuildingPage = () => {
   const { id } = useParams();
